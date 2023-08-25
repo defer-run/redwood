@@ -12,19 +12,12 @@ export const builder = (yargs) => {
     description: 'Overwrite existing configuration',
     type: 'boolean',
   })
-  yargs.option('verbose', {
-    alias: 'v',
-    default: false,
-    description: 'Print more logs',
-    type: 'boolean',
-  })
 }
 
 export const handler = async (options) => {
   recordTelemetryAttributes({
     command: 'setup defer',
     force: options.force,
-    verbose: options.verbose
   })
   const { handler } = await import('./deferHandler.js')
   return handler(options)
